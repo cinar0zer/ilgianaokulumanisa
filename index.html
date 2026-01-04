@@ -22,7 +22,6 @@ body{
   text-align:center;
 }
 
-/* 🔥 TÜM YAZILAR RGB */
 body, h1, h2, h3, p, span, label, input, select, textarea, button {
   animation: rgbGlow 3s infinite alternate;
 }
@@ -71,18 +70,66 @@ button{
 
 .hidden{display:none}
 
-/* spray */
-.spray{
-  position:fixed;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:rgba(255,0,0,.6);
-  pointer-events:none;
-  animation:fade 1s forwards;
+/* 🤖 AI */
+#aiBtn{
+ position:fixed;
+ right:20px;
+ bottom:20px;
+ width:60px;
+ height:60px;
+ border-radius:50%;
+ background:#ff2e2e;
+ color:#fff;
+ font-size:26px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ cursor:pointer;
+ z-index:9999;
 }
-@keyframes fade{
-  to{opacity:0;transform:scale(2)}
+
+#aiBox{
+ position:fixed;
+ right:20px;
+ bottom:90px;
+ width:280px;
+ background:#000;
+ border-radius:12px;
+ z-index:9999;
+ overflow:hidden;
+}
+
+#aiHeader{
+ background:#ff2e2e;
+ padding:10px;
+ font-weight:bold;
+}
+
+#aiMessages{
+ height:200px;
+ overflow-y:auto;
+ padding:10px;
+ font-size:13px;
+}
+
+#aiInput{
+ width:100%;
+ border:none;
+ padding:10px;
+ outline:none;
+ background:#111;
+ color:#fff;
+}
+
+/* 🍪 COOKIE */
+#cookieBar{
+ position:fixed;
+ bottom:0;
+ left:0;
+ width:100%;
+ background:#000;
+ padding:10px;
+ z-index:9999;
 }
 </style>
 </head>
@@ -93,13 +140,6 @@ button{
 <img src="image.png" width="180"><br>
 <h1>TAGBASE</h1>
 <p>ig: cinar0zer</p>
-
-<!-- 🔗 KISA DOMAIN GÖRÜNÜR -->
-<p>
-<a href="https://tagbase.pages.dev" target="_blank" style="color:#0ff;text-decoration:none">
-tagbase.pages.dev
-</a>
-</p>
 </header>
 
 <section>
@@ -143,7 +183,6 @@ REKLAM ALANI<br>
 <input id="regUser" placeholder="Yeni kullanıcı adı">
 <input id="regPass" type="password" placeholder="Şifre">
 <button onclick="register()">Kayıt</button>
-<p style="font-size:12px">Kayıt olmadan sipariş veremezsin.</p>
 </div>
 </section>
 
@@ -151,44 +190,74 @@ REKLAM ALANI<br>
 <div class="box">
 <h2>Sipariş Ver</h2>
 
-<form action="https://formspree.io/f/mdakkpzw" method="POST" onsubmit="return sendOrder()">
-<input id="orderNo" name="siparis_no" readonly>
+<form action="https://formspree.io/f/mdakkpzw" method="POST">
 <input name="isim" placeholder="İsim Soyisim" required>
 <input name="adres" placeholder="Adres" required>
 
-<select name="renk" required>
-<option value="">Renk</option>
-<option>Siyah</option>
-<option>Beyaz</option>
-<option>Kırmızı</option>
-<option>Mavi</option>
+<select name="urun" required>
+<option value="">Ürün</option>
+<option>Posca</option>
+<option>Sprey</option>
 </select>
-
-<input type="number" id="adet" value="1" min="1" oninput="hesapla()">
-<input id="fiyat" name="toplam_fiyat" placeholder="Toplam Fiyat" readonly>
-
-<label style="font-size:12px">
-<input type="checkbox" id="onay" required> Elden teslimi kabul ediyorum
-</label><br>
 
 <button type="submit">Siparişi Gönder</button>
 </form>
 </div>
 </section>
 
-<section>
-<div class="box">
-<h2>Bize Ulaş</h2>
-<iframe
-src="https://docs.google.com/forms/d/e/1FAIpQLSeJBvOIwuRGaNlcjtbc2cwAQiIIEIyAgPkHxGZKGWFhmoWEog/viewform?embedded=true"
-width="100%" height="700" frameborder="0">Yükleniyor…</iframe>
-</div>
-</section>
-
 <div class="box">
 <h2>QR ile Gir</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tagbase.pages.dev">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cinar0zer.github.io/TaGBasE/">
 </div>
+
+<!-- 🤖 AI -->
+<div id="aiBtn">🤖</div>
+<div id="aiBox" class="hidden">
+  <div id="aiHeader">TagBase AI</div>
+  <div id="aiMessages"></div>
+  <input id="aiInput" placeholder="Bir şey sor..." onkeydown="aiEnter(event)">
+</div>
+
+<!-- 🍪 COOKIE -->
+<div id="cookieBar">
+Bu site çerez kullanır.
+<button onclick="acceptCookie()">Kabul Et</button>
+</div>
+
+<script>
+function register(){
+ if(!regUser.value||!regPass.value) return alert("Boş olmaz");
+ localStorage[regUser.value]=regPass.value;
+ alert("Kayıt tamam");
+}
+
+function login(){
+ if(localStorage[loginUser.value]===loginPass.value){
+  orderArea.classList.remove("hidden");
+ } else alert("Hatalı giriş");
+}
+
+/* AI */
+aiBtn.onclick=()=>aiBox.classList.toggle("hidden");
+
+function aiEnter(e){
+ if(e.key==="Enter"){
+  let q=aiInput.value;
+  aiMessages.innerHTML+=`<div><b>Sen:</b> ${q}</div>`;
+  aiInput.value="";
+  setTimeout(()=>{
+   aiMessages.innerHTML+=`<div><b>AI:</b> Yardım için IG: cinar0zer</div>`;
+  },400);
+ }
+}
+
+/* COOKIE */
+if(localStorage.cookieAccepted) cookieBar.style.display="none";
+function acceptCookie(){
+ localStorage.cookieAccepted=true;
+ cookieBar.style.display="none";
+}
+</script>
 
 <footer style="padding:20px;color:#777">
 © 2026 TagBase – Sokaktan Doğdu
@@ -196,3 +265,4 @@ width="100%" height="700" frameborder="0">Yükleniyor…</iframe>
 
 </body>
 </html>
+
