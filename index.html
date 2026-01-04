@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>TagBase</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at top,#222,#000),
+    url("https://i.imgur.com/6IUbEMK.png");
+  background-size:cover;
+  background-attachment:fixed;
+  text-align:center;
+}
+
+/* 🔥 TÜM YAZILAR RGB */
+body, h1, h2, h3, p, span, label, input, select, textarea, button {
+  animation: rgbGlow 3s infinite alternate;
+}
+
+@keyframes rgbGlow{
+  0%{text-shadow:0 0 4px red}
+  25%{text-shadow:0 0 6px cyan}
+  50%{text-shadow:0 0 6px yellow}
+  75%{text-shadow:0 0 6px magenta}
+  100%{text-shadow:0 0 8px red}
+}
+
+h1,h2,h3{
+  font-family:'Rubik Wet Paint',cursive;
+  letter-spacing:2px;
+}
+
+header{
+  padding:40px;
+  background:rgba(0,0,0,.7);
+}
+
+section{padding:20px}
+
+.box{
+  background:rgba(0,0,0,.75);
+  max-width:650px;
+  margin:20px auto;
+  padding:20px;
+  border-radius:12px;
+}
+
+input,select,textarea,button{
+  width:95%;
+  max-width:320px;
+  padding:8px;
+  margin:6px 0;
+}
+
+button{
+  background:#ff2e2e;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+
+.hidden{display:none}
+
+/* spray */
+.spray{
+  position:fixed;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:rgba(255,0,0,.6);
+  pointer-events:none;
+  animation:fade 1s forwards;
+}
+@keyframes fade{
+  to{opacity:0;transform:scale(2)}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="image.png" width="180"><br>
+<h1>TAGBASE</h1>
+<p>ig: cinar0zer</p>
+
+<!-- 🔗 KISA DOMAIN GÖRÜNÜR -->
+<p>
+<a href="https://tagbase.pages.dev" target="_blank" style="color:#0ff;text-decoration:none">
+tagbase.pages.dev
+</a>
+</p>
+</header>
+
+<section>
+<div class="box">
+<h2>Hakkımızda</h2>
+<p>
+TaGBasE sokak stilleri için POSCA kalem ve TAG ürünleri satar.<br>
+Elden teslim – kargo yok.<br>
+📍 Bursa / Mustafakemalpaşa
+</p>
+</div>
+
+<div class="box">
+<h2>Ürünler</h2>
+<p>
+• Posca Kalem<br>
+• Sprey Boya<br>
+• Street ekipmanları
+</p>
+</div>
+
+<div class="box">
+<h2>Street Wall</h2>
+<p id="reklamText">
+REKLAM ALANI<br>
+İletişim: ig cinar0zer
+</p>
+</div>
+</section>
+
+<section>
+<div class="box">
+<h2>Giriş</h2>
+<input id="loginUser" placeholder="Kullanıcı adı">
+<input id="loginPass" type="password" placeholder="Şifre">
+<button onclick="login()">Giriş</button>
+</div>
+
+<div class="box">
+<h2>Kayıt Ol</h2>
+<input id="regUser" placeholder="Yeni kullanıcı adı">
+<input id="regPass" type="password" placeholder="Şifre">
+<button onclick="register()">Kayıt</button>
+<p style="font-size:12px">Kayıt olmadan sipariş veremezsin.</p>
+</div>
+</section>
+
+<section id="orderArea" class="hidden">
+<div class="box">
+<h2>Sipariş Ver</h2>
+
+<form action="https://formspree.io/f/mdakkpzw" method="POST" onsubmit="return sendOrder()">
+<input id="orderNo" name="siparis_no" readonly>
+<input name="isim" placeholder="İsim Soyisim" required>
+<input name="adres" placeholder="Adres" required>
+
+<select name="renk" required>
+<option value="">Renk</option>
+<option>Siyah</option>
+<option>Beyaz</option>
+<option>Kırmızı</option>
+<option>Mavi</option>
+</select>
+
+<input type="number" id="adet" value="1" min="1" oninput="hesapla()">
+<input id="fiyat" name="toplam_fiyat" placeholder="Toplam Fiyat" readonly>
+
+<label style="font-size:12px">
+<input type="checkbox" id="onay" required> Elden teslimi kabul ediyorum
+</label><br>
+
+<button type="submit">Siparişi Gönder</button>
+</form>
+</div>
+</section>
+
+<section>
+<div class="box">
+<h2>Bize Ulaş</h2>
+<iframe
+src="https://docs.google.com/forms/d/e/1FAIpQLSeJBvOIwuRGaNlcjtbc2cwAQiIIEIyAgPkHxGZKGWFhmoWEog/viewform?embedded=true"
+width="100%" height="700" frameborder="0">Yükleniyor…</iframe>
+</div>
+</section>
+
+<div class="box">
+<h2>QR ile Gir</h2>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tagbase.pages.dev">
+</div>
+
+<footer style="padding:20px;color:#777">
+© 2026 TagBase – Sokaktan Doğdu
+</footer>
+
+</body>
+</html>
