@@ -1,267 +1,191 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>TagBase</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlgi Anaokulu | Manisa'nın En İlgili Anaokulu</title>
+    <style>
+        :root {
+            --primary-color: #ff9f43; /* Sıcak Turuncu */
+            --secondary-color: #1dd1a1; /* Canlı Yeşil */
+            --text-color: #2d3436;
+            --bg-light: #fdfbf7;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-*{box-sizing:border-box}
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(circle at top,#222,#000),
-    url("https://i.imgur.com/6IUbEMK.png");
-  background-size:cover;
-  background-attachment:fixed;
-  text-align:center;
-}
+        /* Header (Üst Menü) */
+        header {
+            background-color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-body, h1, h2, h3, p, span, label, input, select, textarea, button {
-  animation: rgbGlow 3s infinite alternate;
-}
+        header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+        }
 
-@keyframes rgbGlow{
-  0%{text-shadow:0 0 4px red}
-  25%{text-shadow:0 0 6px cyan}
-  50%{text-shadow:0 0 6px yellow}
-  75%{text-shadow:0 0 6px magenta}
-  100%{text-shadow:0 0 8px red}
-}
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
 
-h1,h2,h3{
-  font-family:'Rubik Wet Paint',cursive;
-  letter-spacing:2px;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-header{
-  padding:40px;
-  background:rgba(0,0,0,.7);
-}
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
 
-section{padding:20px}
+        /* Hero Section (Karşılama Ekranı) */
+        .hero {
+            background: linear-gradient(rgba(255, 159, 67, 0.1), rgba(29, 209, 161, 0.1));
+            padding: 100px 20px;
+            text-align: center;
+        }
 
-.box{
-  background:rgba(0,0,0,.75);
-  max-width:650px;
-  margin:20px auto;
-  padding:20px;
-  border-radius:12px;
-}
+        .hero h2 {
+            font-size: 48px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
 
-input,select,textarea,button{
-  width:95%;
-  max-width:320px;
-  padding:8px;
-  margin:6px 0;
-}
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-button{
-  background:#ff2e2e;
-  color:#fff;
-  border:none;
-  cursor:pointer;
-}
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
 
-.hidden{display:none}
+        .btn:hover {
+            background-color: #e88e32;
+        }
 
-/* 🤖 AI */
-#aiBtn{
- position:fixed;
- right:20px;
- bottom:20px;
- width:60px;
- height:60px;
- border-radius:50%;
- background:#ff2e2e;
- color:#fff;
- font-size:26px;
- display:flex;
- align-items:center;
- justify-content:center;
- cursor:pointer;
- z-index:9999;
-}
+        /* Hizmetler / Özellikler */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            flex-wrap: wrap;
+        }
 
-#aiBox{
- position:fixed;
- right:20px;
- bottom:90px;
- width:280px;
- background:#000;
- border-radius:12px;
- z-index:9999;
- overflow:hidden;
-}
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--secondary-color);
+        }
 
-#aiHeader{
- background:#ff2e2e;
- padding:10px;
- font-weight:bold;
-}
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
 
-#aiMessages{
- height:200px;
- overflow-y:auto;
- padding:10px;
- font-size:13px;
-}
+        /* Footer */
+        footer {
+            background-color: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
 
-#aiInput{
- width:100%;
- border:none;
- padding:10px;
- outline:none;
- background:#111;
- color:#fff;
-}
-
-/* 🍪 COOKIE */
-#cookieBar{
- position:fixed;
- bottom:0;
- left:0;
- width:100%;
- background:#000;
- padding:10px;
- z-index:9999;
-}
-</style>
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            .hero h2 { font-size: 32px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<img src="image.png" width="180"><br>
-<h1>TAGBASE</h1>
-<p>ig: cinar0zer</p>
-</header>
+    <header>
+        <h1>🌟 İlgi Anaokulu</h1>
+        <nav>
+            <ul>
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#egitim">Eğitim</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<section>
-<div class="box">
-<h2>Hakkımızda</h2>
-<p>
-TaGBasE sokak stilleri için POSCA kalem ve TAG ürünleri satar.<br>
-Elden teslim – kargo yok.<br>
-📍 Bursa / Mustafakemalpaşa
-</p>
-</div>
+    <section class="hero" id="anasayfa">
+        <h2>Manisa'nın En İlgili Anaokulu'na Hoş Geldiniz!</h2>
+        <p>Çocuklarınızın sevgiyle büyüdüğü, oynayarak öğrendiği ve geleceğe güvenle hazırlandığı mutlu yuva.</p>
+        <a href="#iletisim" class="btn">Ön Kayıt ve Bilgi Alın</a>
+    </section>
 
-<div class="box">
-<h2>Ürünler</h2>
-<p>
-• Posca Kalem<br>
-• Sprey Boya<br>
-• Street ekipmanları
-</p>
-</div>
+    <section class="features" id="hakkimizda">
+        <div class="card">
+            <h3>🎨 Uzman Kadro</h3>
+            <p>Alanında uzman, şefkatli ve deneyimli okul öncesi öğretmenlerimizle çocuklarınız güvende.</p>
+        </div>
+        <div class="card">
+            <h3>🧩 Oyun Temelli Öğrenme</h3>
+            <p>Klasik eğitim yerine, çocukların doğasına uygun, merak duygusunu besleyen oyun temelli etkinlikler.</p>
+        </div>
+        <div class="card">
+            <h3>🌳 Doğa ile İç İçe</h3>
+            <p>Güvenli bahçemizde toprakla buluşuyor, doğayı tanıyor ve enerjilerini atıyorlar.</p>
+        </div>
+    </section>
 
-<div class="box">
-<h2>Street Wall</h2>
-<p id="reklamText">
-REKLAM ALANI<br>
-İletişim: ig cinar0zer
-</p>
-</div>
-</section>
-
-<section>
-<div class="box">
-<h2>Giriş</h2>
-<input id="loginUser" placeholder="Kullanıcı adı">
-<input id="loginPass" type="password" placeholder="Şifre">
-<button onclick="login()">Giriş</button>
-</div>
-
-<div class="box">
-<h2>Kayıt Ol</h2>
-<input id="regUser" placeholder="Yeni kullanıcı adı">
-<input id="regPass" type="password" placeholder="Şifre">
-<button onclick="register()">Kayıt</button>
-</div>
-</section>
-
-<section id="orderArea" class="hidden">
-<div class="box">
-<h2>Sipariş Ver</h2>
-
-<form action="https://formspree.io/f/mdakkpzw" method="POST">
-<input name="isim" placeholder="İsim Soyisim" required>
-<input name="adres" placeholder="Adres" required>
-
-<select name="urun" required>
-<option value="">Ürün</option>
-<option>Posca</option>
-<option>Sprey</option>
-</select>
-
-<button type="submit">Siparişi Gönder</button>
-</form>
-</div>
-</section>
-
-<div class="box">
-<h2>QR ile Gir</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://cinar0zer.github.io/TaGBasE/">
-</div>
-
-<!-- 🤖 AI -->
-<div id="aiBtn">🤖</div>
-<div id="aiBox" class="hidden">
-  <div id="aiHeader">TagBase AI</div>
-  <div id="aiMessages"></div>
-  <input id="aiInput" placeholder="Bir şey sor..." onkeydown="aiEnter(event)">
-</div>
-
-<!-- 🍪 COOKIE -->
-<div id="cookieBar">
-Bu site çerez kullanır.
-<button onclick="acceptCookie()">Kabul Et</button>
-</div>
-
-<script>
-function register(){
- if(!regUser.value||!regPass.value) return alert("Boş olmaz");
- localStorage[regUser.value]=regPass.value;
- alert("Kayıt tamam");
-}
-
-function login(){
- if(localStorage[loginUser.value]===loginPass.value){
-  orderArea.classList.remove("hidden");
- } else alert("Hatalı giriş");
-}
-
-/* AI */
-aiBtn.onclick=()=>aiBox.classList.toggle("hidden");
-
-function aiEnter(e){
- if(e.key==="Enter"){
-  let q=aiInput.value;
-  aiMessages.innerHTML+=`<div><b>Sen:</b> ${q}</div>`;
-  aiInput.value="";
-  setTimeout(()=>{
-   aiMessages.innerHTML+=`<div><b>AI:</b> Yardım için IG: cinar0zer</div>`;
-  },400);
- }
-}
-
-/* COOKIE */
-if(localStorage.cookieAccepted) cookieBar.style.display="none";
-function acceptCookie(){
- localStorage.cookieAccepted=true;
- cookieBar.style.display="none";
-}
-</script>
-
-<footer style="padding:20px;color:#777">
-© 2026 TagBase – Sokaktan Doğdu
-</footer>
+    <footer id="iletisim">
+        <h2>Bize Ulaşın</h2>
+        <p style="margin-top: 15px;">📍 Manisa, Merkez</p>
+        <p>📞 Telefon: 05XX XXX XX XX</p>
+        <p style="margin-top: 20px; font-size: 18px;">
+            Günlük etkinliklerimizi ve mutlu çocuklarımızı görmek için bizi takip edin:<br><br>
+            <a href="https://www.instagram.com/ilgianaokulumanisa/" target="_blank" class="btn" style="display:inline-block; padding: 10px 20px; font-size: 16px;">📸 Instagram'da Ziyaret Et</a>
+        </p>
+        <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">© 2026 İlgi Anaokulu Manisa. Tüm Hakları Saklıdır.</p>
+    </footer>
 
 </body>
 </html>
