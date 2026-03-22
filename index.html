@@ -23,36 +23,50 @@
             background-color: var(--bg-light);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* Mobil cihazlarda yatay kaymayı önler */
         }
 
         /* Header (Üst Menü) */
         header {
             background-color: white;
-            padding: 20px 50px;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
         }
 
         header h1 {
             color: var(--primary-color);
-            font-size: 28px;
+            font-size: 22px;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: bold;
+            font-size: 14px;
             transition: color 0.3s;
         }
 
@@ -63,61 +77,72 @@
         /* Hero Section (Karşılama Ekranı) */
         .hero {
             background: linear-gradient(rgba(255, 159, 67, 0.1), rgba(29, 209, 161, 0.1));
-            padding: 100px 20px;
+            padding: 80px 20px;
             text-align: center;
         }
 
         .hero h2 {
-            font-size: 48px;
+            font-size: 36px;
             color: var(--text-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
+            font-size: 18px;
+            margin-bottom: 25px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* Instagram Galeri Bölümü */
+        .instagram-gallery {
+            padding: 60px 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .instagram-gallery h2 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .instagram-gallery p {
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .instagram-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-items: center; /* Fotoğrafları ortalar */
+        }
+
+        /* Instagram'ın gömme kodunun genişliğini kontrol etmek için */
+        .instagram-container blockquote {
+            width: 100% !important;
+            min-width: 320px !important;
+            margin: 0 !important;
+        }
+
         .btn {
             background-color: var(--primary-color);
             color: white;
-            padding: 15px 30px;
+            padding: 12px 24px;
             text-decoration: none;
             border-radius: 25px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-block;
         }
 
         .btn:hover {
             background-color: #e88e32;
-        }
-
-        /* Hizmetler / Özellikler */
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 60px 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-bottom: 5px solid var(--secondary-color);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -136,57 +161,60 @@
         
         /* Mobil Uyumluluk */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
-            .hero h2 { font-size: 32px; }
+            header { flex-direction: column; padding: 10px; }
+            nav ul { margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+            .hero h2 { font-size: 28px; }
+            .instagram-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🌟 İlgi Anaokulu</h1>
+        <div class="logo-container">
+            <img src="https://scontent.cdninstagram.com/v/t51.2885-19/461168128_18218128827056093_1423479632832587570_n.jpg?_nc_ht=scontent.cdninstagram.com&_nc_cat=109&_nc_ohc=84fG8s9f6L0Q7kNvgFYvYJ-&_nc_gid=03432098675440d9ae4877e684f509a2&edm=APs17CUBAAAA&ccb=7-5&oh=00_AYC69R1O0_wS4mPqX9P1D9o6b8DqS3v3R3N8P7R7C6Dq_g&oe=674681E3&_nc_sid=10d13b" alt="İlgi Anaokulu Logosu" class="logo-img">
+            <h1>İlgi Anaokulu</h1>
+        </div>
         <nav>
             <ul>
                 <li><a href="#anasayfa">Ana Sayfa</a></li>
-                <li><a href="#hakkimizda">Hakkımızda</a></li>
-                <li><a href="#egitim">Eğitim</a></li>
+                <li><a href="#galeri">Etkinlikler</a></li>
                 <li><a href="#iletisim">İletişim</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero" id="anasayfa">
-        <h2>Manisa'nın En İlgili Anaokulu'na Hoş Geldiniz!</h2>
-        <p>Çocuklarınızın sevgiyle büyüdüğü, oynayarak öğrendiği ve geleceğe güvenle hazırlandığı mutlu yuva.</p>
-        <a href="#iletisim" class="btn">Ön Kayıt ve Bilgi Alın</a>
+        <h2>Manisa'da Sevgi Dolu Bir Başlangıç</h2>
+        <p>İlgi Anaokulu'nda her çocuk özeldir. Oyunla öğrenen, merak eden ve mutlu büyüyen nesiller yetiştiriyoruz.</p>
+        <a href="#iletisim" class="btn">Bize Ulaşın</a>
     </section>
 
-    <section class="features" id="hakkimizda">
-        <div class="card">
-            <h3>🎨 Uzman Kadro</h3>
-            <p>Alanında uzman, şefkatli ve deneyimli okul öncesi öğretmenlerimizle çocuklarınız güvende.</p>
+    <section class="instagram-gallery" id="galeri">
+        <h2>Okulumuzdan Mutlu Kareler</h2>
+        <p>Instagram hesabımızdaki en güncel etkinliklerimizi inceleyin.</p>
+        
+        <div class="instagram-container">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DB_z5RNoT9p/" data-instgrm-version="14"></blockquote>
+
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DBy9R-Bo4F3/" data-instgrm-version="14"></blockquote>
+
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C_m_R_9I1F1/" data-instgrm-version="14"></blockquote>
         </div>
-        <div class="card">
-            <h3>🧩 Oyun Temelli Öğrenme</h3>
-            <p>Klasik eğitim yerine, çocukların doğasına uygun, merak duygusunu besleyen oyun temelli etkinlikler.</p>
-        </div>
-        <div class="card">
-            <h3>🌳 Doğa ile İç İçe</h3>
-            <p>Güvenli bahçemizde toprakla buluşuyor, doğayı tanıyor ve enerjilerini atıyorlar.</p>
+
+        <script async src="//www.instagram.com/embed.js"></script>
+        
+        <div style="margin-top: 50px;">
+            <a href="https://www.instagram.com/ilgianaokulumanisa/" target="_blank" class="btn" style="background-color: #e1306c;">Bizi Instagram'da Takip Edin</a>
         </div>
     </section>
 
     <footer id="iletisim">
-        <h2>Bize Ulaşın</h2>
+        <h2>İletişim Bilgilerimiz</h2>
         <p style="margin-top: 15px;">📍 Manisa, Merkez</p>
         <p>📞 Telefon: 05XX XXX XX XX</p>
-        <p style="margin-top: 20px; font-size: 18px;">
-            Günlük etkinliklerimizi ve mutlu çocuklarımızı görmek için bizi takip edin:<br><br>
-            <a href="https://www.instagram.com/ilgianaokulumanisa/" target="_blank" class="btn" style="display:inline-block; padding: 10px 20px; font-size: 16px;">📸 Instagram'da Ziyaret Et</a>
-        </p>
         <p style="margin-top: 30px; font-size: 14px; opacity: 0.7;">© 2026 İlgi Anaokulu Manisa. Tüm Hakları Saklıdır.</p>
     </footer>
 
 </body>
 </html>
-
